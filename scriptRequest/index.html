@@ -12,9 +12,9 @@
     <h1>你的账户余额 <span id="amount"> &&&amount&&& </span></h1>
     <button id="button">pay $1</button>
     <script>
+        let script = document.createElement('script');
         button.onclick = () => {
-            let script = document.createElement('script');
-            script.src = '/pay'; //send a request
+            script.src = 'http://alias.com:8002/pay'; //send a request
             document.body.appendChild(script);
             script.onerror = () => {
                 alert("request error");
