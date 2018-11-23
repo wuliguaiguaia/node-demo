@@ -19,6 +19,9 @@
             script.onerror = () => {
                 alert("request error");
             }
+            script.onload = () => {
+                window.location.reload()
+            }
             setTimeout(() => {
                 script.remove();
             }, 0);

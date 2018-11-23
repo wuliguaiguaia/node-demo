@@ -47,7 +47,7 @@ var server = http.createServer(function(request, response){
         response.setHeader("Content-Type", 'application/javascript');
         response.statusCode = 200;
         response.write(`amount.innerText = ' + ${amount};
-                        window.location.reload()`) // 服务器执行js
+                        `) // 服务器执行js
 
         response.end();
 
