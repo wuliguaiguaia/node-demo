@@ -8,8 +8,11 @@
 </head>
 <body>
     <h1>你的账户余额 <span id="amount"> &&&amount&&& </span></h1>
-    <form action="/pay" method="post">
+    <form action="/pay" method="post" target="result">
         <input type="submit" value="pay $1">
     </form>
+    
+    <!-- form提交一定会刷新当前页面 -->
+    <iframe name="result"  src="about:blank" frameborder="0" height="200"></iframe>
 </body>
 </html>
