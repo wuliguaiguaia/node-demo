@@ -17,7 +17,6 @@
             image.src = '/pay'; //send a request
             image.onload = () => {
                 alert('request success');
-                // window.location.reload();
                 amount.innerText = amount.innerText - 1;
             }
             image.onerror = () => {
