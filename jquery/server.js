@@ -36,13 +36,13 @@ var server = http.createServer(function(request, response){
         var string = fs.readFileSync("./index.html", 'utf8');
         response.setHeader('Content-Type', 'text/html; charset=utf-8');
         var amount = fs.readFileSync("./db", 'utf8')
-        string = string.replace('&&&amount&&&', amount); //100
+        string = string.replace('&&&amount&&&', amount); 
         response.write(string)
         response.end()
-    } else if (path === '/pay') { // url追加查询参数出错 待解决！
-        var amount = fs.readFileSync("./db", 'utf8') //100
-        var newAmount = amount - 1;
-        fs.writeFileSync('./db',newAmount);
+    } else if (path === '/pay') { 
+        var amount = fs.readFileSync("./db", 'utf8') 
+        amount -= 1;
+        fs.writeFileSync('./db',amount);
         
         response.setHeader("Content-Type", 'application/javascript');
         response.statusCode = 200;
