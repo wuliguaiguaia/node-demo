@@ -23,12 +23,9 @@
 ## form发送请求
 ```html
 <h1>你的账户余额 <span id="amount"> &&&amount&&& </span></h1>
-<form action="/pay" method="post" target="result">
+<form action="/pay" method="post">
     <input type="submit" value="pay $1">
 </form>
-
-<!-- use iframe tag when after end transfer data' ,such as 'success' or 'fail'-->
-<iframe name="result"  src="about:blank" frameborder="0" height="200"></iframe>
 ```
 node
 ```js
@@ -51,7 +48,7 @@ if (path === '/') {
     response.end();
 }
 ```
-问题：form提交一定会刷新页面
+问题：form提交必须手动刷新页面
 
 ## 局部刷新
 
