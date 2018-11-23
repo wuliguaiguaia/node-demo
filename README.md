@@ -182,6 +182,6 @@ response.write(`
 ```
 
 
-### 为什么jsonp不支持jsonp?
+### 为什么jsonp不支持post?
 因为jsonp是通过动态创建script实现的，动态创建script只能用get。
 
