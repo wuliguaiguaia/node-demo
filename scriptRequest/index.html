@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <h1>你的账户余额 <span id="amount"> &&&amount&&& </span></h1>
+    <button id="button">pay $1</button>
+    <script>
+        button.onclick = () => {
+            let script = document.createElement('script');
+            script.src = '/pay'; //send a request
+            document.body.appendChild(script);
+            script.onerror = () => {
+                alert("request error");
+            }
+            // debugger
+            setTimeout(() => {
+                script.remove();
+            }, 0);
+        }
+    </script>
+</body>
+
+</html>
