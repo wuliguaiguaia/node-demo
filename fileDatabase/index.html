@@ -11,8 +11,8 @@
     <form action="/pay" method="post" target="result">
         <input type="submit" value="pay $1">
     </form>
-    
-    <!-- form提交一定会刷新当前页面 -->
-    <iframe name="result"  src="about:blank" frameborder="0" height="200"></iframe>
+
+    <!-- use iframe tag when after end transfer data' ,such as 'success' or 'fail'-->
+    <iframe name="result" src="about:blank" frameborder="0" height="200"></iframe>
 </body>
 </html>
