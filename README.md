@@ -80,7 +80,7 @@ if(path === '/pay' ){
     response.end();
 }
 ```
-问题：img必须上传图片耗资源，而且只知道成功和失败，无法获取其他信息
+问题：img模拟可以实现局部刷新，但必须上传图片耗资源，而且只知道成功和失败，无法获取其他信息
 
 ### 方案二：script造get请求 【 SRJ - Server Rendered JavaScript 】
 
@@ -91,6 +91,9 @@ button.onclick = () => {
     document.body.appendChild(script);
     script.onerror = () => {
         alert("request error");
+    }
+    script.onload = () => {
+        window.location.reload() 
     }
     setTimeout(() => { // must delete script
         script.remove();
@@ -106,30 +109,28 @@ if (path === '/pay') {
     
     response.setHeader("Content-Type", 'application/javascript');
     response.statusCode = 200;
-    response.write(`amount.innerText = ' + ${amount};
-                    window.location.reload()`) 
+    response.write(`amount.innerText = ' + ${amount};`) 
     response.end();
 }
 ```
-问题：后端必须知道前端代码
+问题：后端必须知道前端代码。ps:上面需要手动刷新
 
 
 ### 方案三：jsonp
 请求方：jack.com 的前端程序员（浏览器）
 响应方：alias.com 的后端程序员（服务器）
 
-1. 请求方创建 script，src 指向响应方，同时传一个查询参数 ?callbackName=yyy
+1. 请求方创建 script，src 指向响应方，同时传一个查询参数 ?callbackName=xxx
 2. 响应方根据查询参数callbackName，构造形如
-    - yyy.call(undefined, '你要的数据')
-    - yyy('你要的数据')
-        这样的响应
-3. 浏览器接收到响应，就会执行 yyy.call(undefined, '你要的数据')
+    - xxx.call(undefined, '你要的数据')
+    - xxx('你要的数据')
+3. 浏览器接收到响应，就会执行 xxx.call(undefined, '你要的数据')
 4. 那么请求方就知道了他要的数据
-这就是 JSONP
+这就是 JSONP。
 
 ```js
 let script = document.createElement('script');
-let randomName = 'alias' + parseInt(Math.random()*100000,10);
+let randomName = 'alias' + parseInt(Math.random()*100000,10); // random function name
 window[randomName] =function(res){
     if(res === 'success'){
         amount.innerText -= 1;
@@ -150,7 +151,7 @@ setTimeout(() => {
 node
 ```js
 response.write(`
-    ${query.callback}.call(undefined, "success" )
+    ${query.callback}.call(undefined, "success")
 `) 
 ```
 ### 约定：
