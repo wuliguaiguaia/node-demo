@@ -155,8 +155,10 @@ response.write(`
 `) 
 ```
 ### 约定：
+```
 callbackName > callback
 yyy > 随机数 alias4513264512568745()
+```
 
 ### 方案四：jquery 封装的方法 --- jsonp思路（！这和ajax无关！）
 ```js
@@ -182,3 +184,4 @@ response.write(`
 
 ### 为什么jsonp不支持jsonp?
 因为jsonp是通过动态创建script实现的，动态创建script只能用get。
+
