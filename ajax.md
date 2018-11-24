@@ -12,11 +12,7 @@ var xhr = new XMLHttpRequest();
 xhr.onreadystatechange =()=>{
     if(xhr.readyState === 4){
         if(xhr.status === 200){
-            var str = xhr.responseText;
-            console.log(typeof str); //string
-
-            var obj = JSON.parse(str);
-            console.log(typeof obj); // object
+            var obj = JSON.parse(xhr.responseText);
         }
     }
 }
@@ -27,7 +23,7 @@ node.js
 ```js
 if(path === "/xxx"){
     response.statusCode = 200;
-    response.setHeader('Content-Type', 'text/xml;charset=utf-8');
+    response.setHeader('Content-Type', 'text/json;charset=utf-8');
     response.write(`
     {
         "person":{
@@ -41,7 +37,16 @@ if(path === "/xxx"){
 }
 ```
 
-## CORS解决同源策略限制
+## CORS(Cross-Origin Resource Sharing)解决同源策略限制(协议+域名+端口)
+example：jack.com 访问 alias.com/xxx
+```js
+xhr.open("get", "http://alias.com:8002/xxx");
+xhr.send(null);
+```
 
+node.js alias.com后台允许jack.com 获取资源
+```js
+response.setHeader('Access-Control-Allow-Origin', 'http://jack.com:8001');
+```
 
 
