@@ -92,9 +92,6 @@ button.onclick = () => {
     script.onerror = () => {
         alert("request error");
     }
-    script.onload = () => {
-        window.location.reload() 
-    }
     setTimeout(() => { // must delete script
         script.remove();
     }, 0);
