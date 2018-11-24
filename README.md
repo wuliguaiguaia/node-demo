@@ -101,12 +101,12 @@ node
 ```js
 if (path === '/pay') {  
     var amount = fs.readFileSync("./db", 'utf8')
-    var newAmount = amount - 1;
-    fs.writeFileSync('./db',newAmount);
+    amount -= 1;
+    fs.writeFileSync('./db',amount);
     
     response.setHeader("Content-Type", 'application/javascript');
     response.statusCode = 200;
-    response.write(`amount.innerText = ' + ${amount};`) 
+    response.write(`amount.innerText = ${amount};`) 
     response.end();
 }
 ```
@@ -127,8 +127,8 @@ if (path === '/pay') {
 
 ```js
 let script = document.createElement('script');
-let randomName = 'alias' + parseInt(Math.random()*100000,10); // random function name
-window[randomName] =function(res){
+let randomName = 'alias' + parseInt(Math.random()*100000,10); // random function's name
+window[randomName] = function(res){
     if(res === 'success'){
         amount.innerText -= 1;
     }else{
@@ -154,7 +154,7 @@ response.write(`
 ### 约定：
 ```
 callbackName > callback
-yyy > 随机数 alias4513264512568745()
+xxx > 随机数 alias4513264512568745
 ```
 
 ### 方案四：jquery 封装的方法 --- jsonp思路（！这和ajax无关！）
