@@ -1,9 +1,9 @@
 ## 总结
-用 form 可以发请求，但是会刷新页面或新开页面
-用 a 可以发 get 请求，但是也会刷新页面或新开页面
-用 img 可以发 get 请求，但是只能以图片的形式展示
-用 link 可以发 get 请求，但是只能以 CSS、favicon 的形式展示
-用 script 可以发 get 请求，但是只能以脚本的形式运行
+1. 用 form 可以发请求，但是会刷新页面或新开页面
+2. 用 a 可以发 get 请求，但是也会刷新页面或新开页面
+3. 用 img 可以发 get 请求，但是只能以图片的形式展示
+4. 用 link 可以发 get 请求，但是只能以 CSS、favicon 的形式展示
+5. 用 script 可以发 get 请求，但是只能以脚本的形式运行
 
 ## 请求升级
 **ajax**
@@ -50,3 +50,6 @@ response.setHeader('Access-Control-Allow-Origin', 'http://jack.com:8001');
 ```
 
 
+
+
+NOTE: node server.js 8888 >! log 2>&1 &
