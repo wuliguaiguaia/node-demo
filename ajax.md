@@ -11,8 +11,10 @@
 var xhr = new XMLHttpRequest();
 xhr.onreadystatechange =()=>{
     if(xhr.readyState === 4){
-        if(xhr.status === 200){
+        if(xhr.status >= 200 && xhr.status < 300){
             var obj = JSON.parse(xhr.responseText);
+        }else if(xhr.status >= 400){
+            
         }
     }
 }
@@ -47,6 +49,30 @@ xhr.send(null);
 node.js alias.com后台允许jack.com 获取资源
 ```js
 response.setHeader('Access-Control-Allow-Origin', 'http://jack.com:8001');
+```
+
+
+## 封装jquery的ajax
+```js
+window.jQuery.ajax = function({url,type,data,success,error,headers}) {
+    let xhr = new XMLHttpRequest();
+    xhr.onreadystatechange = handler;
+    xhr.open(type,url);
+    for(let key in headers){
+        xhr.setRequestHeader(key,headers[key]);
+    }
+    xhr.send(data);
+
+    function handler() {
+        if (xhr.readyState === 4) {
+            if (xhr.status >= 200 && xhr.status < 300) {
+                success.call(undefined,xhr.responseText)
+            } else {
+                error.call(undefined,xhr);
+            }
+        }
+    }
+}
 ```
 
 
