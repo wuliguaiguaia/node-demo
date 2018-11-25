@@ -75,6 +75,41 @@ window.jQuery.ajax = function({url,type,data,success,error,headers}) {
 }
 ```
 
+## promise
+解决回调的问题：统一回调形式
+
+ajax返回一个promise实例，实例有一个then属性
+
+如果需要对结果多次处理，就多次then,注意每次then的处理方式
+
+ajax封装升级
+```js
+window.jQuery.ajax = function ({ url, type, data, headers }) {
+    return new Promise((resolve, reject) => {
+        let xhr = new XMLHttpRequest();
+        //...
+    }
+}
+let promise = $.ajax({
+    url: '/xxx',
+    type: 'post',
+    data: "name=alias&pass=xxx",
+})
+
+promise.then((res) => {
+    console.log('success1', res);
+    return 'success2'
+}, (res) => {
+    console.log('error1', res);
+    return 'error2'
+}).then((res) => {
+    console.log(2);
+    console.log(res);
+}, (res) => {
+    console.log('2x');
+    console.log(res);
+})
+```
 
 
 
